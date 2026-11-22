@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="나의 세계와 캐릭터를 기록하는 개인 아카이브">
+  <title>NIGHTFALL — PERSONAL ARCHIVE</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./characters.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap navinner">
+      <a class="brand" href="#home">NIGHTFALL<span>PERSONAL ARCHIVE</span></a>
+      <nav aria-label="페이지 이동">
+        <a href="#home" data-nav="home">HOME</a>
+        <a href="#profile" data-nav="profile">PROFILE</a>
+        <a href="#archive" data-nav="archive">ARCHIVE</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 첫 화면: 이 영역의 문구는 index.html에서 바꿉니다. -->
+    <section class="page" id="view-home">
+      <div class="wrap">
+        <div class="cover">
+          <div class="cover-text">
+            <p class="eyebrow">VOL. 01 · AN ORIGINAL CHARACTER COLLECTION</p>
+            <h1>NIGHT<br>FALL<span class="punct">.</span></h1>
+            <div class="line"></div>
+            <p class="cover-intro">새로운 나 사용법을 연구하는 과정과<br>그 안에 머무는 페르소나를 기록합니다.</p>
+            <a class="solid-btn" href="#profile">CLICK TO ENTER <span>↗</span></a>
+          </div>
+          <div class="cover-art">
+            <img src="./assets/스크린샷 2026-10-22 180317.png" alt="대표 일러스트">
+            <span class="art-label">FEATURED CHARACTER / 001</span>
+          </div>
+        </div>
+        <div class="cover-under"><span>PERSONAL SITE · EST. 2026</span><span>SCROLL THROUGH MY WORLDS ↓</span></div>
+      </div>
+    </section>
+
+    <!-- 내 프로필 페이지 -->
+    <section class="page" id="view-profile" hidden>
+      <div class="wrap">
+        <div class="section-title"><span class="eyebrow">01 / PROFILE</span><h2>About me<span class="punct">.</span></h2></div>
+        <div class="profile-layout">
+          <div class="profile-photo">
+            <img src="./assets/IMG_1292(1).JPEG" alt="프로필 이미지">
+            <span>PROFILE IMAGE · CHANGE ME</span>
+          </div>
+          <div class="profile-copy">
+            <div class="smallcaps">NO. 00 — CURATOR</div>
+            <h3>신자까</h3>
+            <p class="profile-sub">페르소나(부캐) 제작하고 세계관을 만듭니다.</p>
+            <dl class="facts">
+              <div><dt>ACTIVITY</dt><dd>캐릭터 창작 · 그림 · 프롬프트 제작</dd></div>
+              <div><dt>INTERESTS</dt><dd>오리지널 캐릭터 · 세계관 · 설정</dd></div>
+              <div><dt>CONTACT</dt><dd><a href="https://x.com/" target="_blank" rel="noopener">X 프로필 링크로 교체 ↗</a></dd></div>
+            </dl>
+            <a class="outline-btn" href="#archive">캐릭터 아카이브 보기 <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 캐릭터 목록 -->
+    <section class="page" id="view-archive" hidden>
+      <div class="wrap">
+        <div class="section-title archive-head">
+          <div><span class="eyebrow">02 / CHARACTER COLLECTION</span><h2>Archive<span class="punct">.</span></h2></div>
+          <span id="archive-count" class="count">0 / 0</span>
+        </div>
+        <div class="archive-controls">
+          <div class="filters" id="category-filters" role="group" aria-label="캐릭터 카테고리"></div>
+          <label class="search-label"><span class="sr-only">캐릭터 이름 검색</span>
+            <input id="character-search" type="search" placeholder="⌕  캐릭터 이름 검색..." autocomplete="off"></label>
+        </div>
+        <div class="char-grid" id="char-grid"></div>
+        <p id="no-results" class="no-results" hidden>검색 결과가 없습니다.</p>
+      </div>
+    </section>
+
+    <!-- 캐릭터별 상세 정보: 이 디자인 하나로 모든 캐릭터를 표시합니다. -->
+    <section class="page" id="view-character" hidden>
+      <div class="wrap">
+        <a class="backlink" href="#archive">← BACK TO ARCHIVE</a>
+        <div class="detail-head">
+          <div class="detail-art"><img id="detail-cover" alt=""></div>
+          <div class="detail-info">
+            <p class="eyebrow" id="detail-number">ORIGINAL CHARACTER</p>
+            <h2 id="detail-title"></h2>
+            <p id="detail-korean" class="detail-korean"></p>
+            <blockquote id="detail-quote"></blockquote>
+            <p id="detail-description" class="detail-description"></p>
+            <dl class="facts">
+              <div><dt>CATEGORY</dt><dd id="detail-category"></dd></div>
+              <div><dt>FACTION</dt><dd id="detail-faction"></dd></div>
+              <div><dt>AGE</dt><dd id="detail-age"></dd></div>
+              <div><dt>HEIGHT</dt><dd id="detail-height"></dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <div class="block-heading"><span class="eyebrow">01 / CHARACTER PROMPT</span><h3>Prompt</h3></div>
+          <p class="hint">아래 프롬프트는 수정한 뒤 복사할 수 있습니다. 이 화면에서 수정해도 원본 파일은 바뀌지 않습니다.</p>
+          <label for="prompt-box" class="sr-only">캐릭터 프롬프트</label>
+          <textarea id="prompt-box" rows="9" spellcheck="false"></textarea>
+          <div class="prompt-actions"><span id="prompt-platform" class="smallcaps"></span><button id="prompt-copy" class="solid-btn" type="button">COPY PROMPT ↗</button></div>
+          <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+        </div>
+        <div class="detail-block">
+          <div class="block-heading"><span class="eyebrow">02 / EXTRA IMAGES</span><h3>Gallery</h3></div>
+          <p class="hint">이미지를 클릭하면 크게 볼 수 있습니다. 캐릭터마다 여러 장을 넣을 수 있어요.</p>
+          <div class="gallery-grid" id="detail-gallery"></div>
+        </div>
+        <a class="backlink bottom-back" href="#archive">← BACK TO ARCHIVE</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap foot-inner"><span>NIGHTFALL © PERSONAL ARCHIVE</span><span>MADE FOR MY CHARACTERS · 2026</span></div></footer>
+
+  <dialog id="image-dialog" class="image-dialog">
+    <button id="image-close" class="image-close" type="button" aria-label="이미지 닫기">×</button>
+    <img id="lightbox-image" alt="확대된 캐릭터 이미지">
+  </dialog>
+</body>
+</html>
